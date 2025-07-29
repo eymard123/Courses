@@ -3,13 +3,26 @@ import { Menu, GraduationCap, Database } from 'lucide-react'
 import SearchBar from './components/SearchBar'
 import FilterSidebar from './components/FilterSidebar'
 import CourseGrid from './components/CourseGrid'
+import Pagination from './components/Pagination'
 import useCourses from './hooks/useCourses'
 import useFilters from './hooks/useFilters'
 
 function App() {
   const [searchTerm, setSearchTerm] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const { courses, loading, error } = useCourses()
+  const { 
+    courses, 
+    loading, 
+    error, 
+    currentPage,
+    totalPages,
+    totalCount,
+    hasNextPage,
+    hasPrevPage,
+    nextPage,
+    prevPage,
+    goToPage
+  } = useCourses()
   const { filters, filteredCourses, updateFilter, clearFilters } = useFilters(courses, searchTerm)
 
   if (error) {
@@ -81,7 +94,7 @@ function App() {
           {/* Results summary */}
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">
-              Showing {filteredCourses.length} of {courses.length} courses
+              Page {currentPage} of {totalPages} • {filteredCourses.length} courses found
               {searchTerm && (
                 <span> for "{searchTerm}"</span>
               )}
@@ -103,6 +116,18 @@ function App() {
           {/* Course Grid */}
           <div className="flex-1 min-w-0">
             <CourseGrid courses={filteredCourses} loading={loading} />
+            
+            {/* Pagination */}
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalCount={totalCount}
+              hasNextPage={hasNextPage}
+              hasPrevPage={hasPrevPage}
+              onNextPage={nextPage}
+              onPrevPage={prevPage}
+              onGoToPage={goToPage}
+            />
           </div>
         </div>
       </div>

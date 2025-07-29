@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { supabase, Course } from '../lib/supabase'
 
+const ITEMS_PER_PAGE = 10
 export default function useCourses() {
   const [courses, setCourses] = useState<Course[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalCount, setTotalCount] = useState(0)
 
   useEffect(() => {
     // Initial fetch
@@ -27,13 +30,26 @@ export default function useCourses() {
     }
   }, [])
 
+  useEffect(() => {
+    fetchCourses()
+  }, [currentPage])
   const fetchCourses = async () => {
     try {
       setLoading(true)
+      
+      // Get total count
+      const { count } = await supabase
+        .from('courses')
+        .select('*', { count: 'exact', head: true })
+      
+      setTotalCount(count || 0)
+      
+      // Get paginated data
       const { data, error } = await supabase
         .from('courses')
         .select('*')
         .order('created_at', { ascending: false })
+        .range((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE - 1)
 
       if (error) throw error
 
@@ -49,7 +65,11 @@ export default function useCourses() {
   const handleRealtimeChange = (payload: any) => {
     switch (payload.eventType) {
       case 'INSERT':
-        setCourses(prev => [payload.new as Course, ...prev])
+        // Only add to current page if we're on page 1
+        if (currentPage === 1) {
+          setCourses(prev => [payload.new as Course, ...prev.slice(0, ITEMS_PER_PAGE - 1)])
+        }
+        setTotalCount(prev => prev + 1)
         break
       case 'UPDATE':
         setCourses(prev => 
@@ -62,9 +82,43 @@ export default function useCourses() {
         setCourses(prev => 
           prev.filter(course => course.id !== payload.old.id)
         )
+        setTotalCount(prev => prev - 1)
         break
     }
   }
 
-  return { courses, loading, error, refetch: fetchCourses }
+  const nextPage = () => {
+    if (currentPage * ITEMS_PER_PAGE < totalCount) {
+      setCurrentPage(prev => prev + 1)
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(prev => prev - 1)
+    }
+  }
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page)
+  }
+
+  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE)
+  const hasNextPage = currentPage < totalPages
+  const hasPrevPage = currentPage > 1
+
+  return { 
+    courses, 
+    loading, 
+    error, 
+    currentPage,
+    totalPages,
+    totalCount,
+    hasNextPage,
+    hasPrevPage,
+    nextPage,
+    prevPage,
+    goToPage,
+    refetch: fetchCourses 
+  }
 }
