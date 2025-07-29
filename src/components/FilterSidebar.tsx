@@ -30,39 +30,39 @@ export default function FilterSidebar({
   // Technologies grouped by program
   const technologiesByProgram: { [key: string]: string[] } = {
     '2-Year Program': [
-      'All',
-      'Computer-Aided Design',
-      'Cyber Security',
-      'Digital Arts and Design',
-      'Electronics',
-      'Machine Automation and Instrumentation (Mechatronics)',
-      'Maritime-Electrotechnical',
-      'Process Automation (Instrumentation and Control)',
-      'Programming',
-      'Web Development'
+  'All',
+      'Information Technology',
+      'Network System & Security Administrator',
+      'Automotive Technology',
+      'Industrial Electrical Technology';
+      'Industrial Automation & Manufacturing Technology',
+      'Semiconductor & Manufacturing Technology',
+      'Advanced Industrial Training Program'      
     ],
     'Senior High': [
       'All',
-      'Agriculture',
-      'Automotive and Motorcycle Servicing',
-      'Computer-Aided Design',
-      'Digital Arts and Design',
-      'Electrical',
-      'Electronics',
-      'Metal Trades-Welding and Pipefitting',
-      'Programming',
-      'Refrigeration and Air-conditioning Mechanic'
+      'Computer Programming',
+      'Mechatronics Servicing'
     ],
     'Short Courses': [
       'All',
+      'Agriculture',
+      'Automotive and Motorcycle Servicing',
       'CISCO Networking',
       'Computer-Aided Design',
       'Cyber Security',
       'Databases',
       'Digital Arts and Design',
+      'Electrical',
+      'Electronics',
       'Linux',
+      'Machine Automation and Instrumentation (Mechatronics)',
+      'Maritime-Electrotechnical',
+      'Metal Trades-Welding and Pipefitting',
       'Office Productivity',
+      'Process Automation (Instrumentation and Control)',
       'Programming',
+      'Refrigeration and Air-conditioning Mechanic',
       'Soft Skills',
       'Web Development'
     ]
