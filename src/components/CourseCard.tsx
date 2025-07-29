@@ -30,11 +30,11 @@ export default function CourseCard({ course }: CourseCardProps) {
 
   const getBranchColor = (branch: string) => {
     switch (branch.toLowerCase()) {
-      case 'Pasig':
+      case 'pasig':
         return 'bg-purple-100 text-purple-800'
-      case 'Pasay':
+      case 'pasay':
         return 'bg-teal-100 text-teal-800'
-      case 'Jalajala':
+      case 'jalajala':
         return 'bg-indigo-100 text-indigo-800'
       default:
         return 'bg-gray-100 text-gray-800'
