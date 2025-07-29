@@ -135,7 +135,7 @@ export default function FilterSidebar({
                       value={branch}
                       checked={filters.branch === branch}
                       onChange={(e) => onFilterChange('branch', e.target.value)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 flex-shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-xs text-gray-700">{branch}</span>
                   </label>
@@ -155,7 +155,7 @@ export default function FilterSidebar({
                       value={program}
                       checked={filters.program === program}
                       onChange={(e) => handleProgramChange(e.target.value)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 flex-shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-xs text-gray-700">{program}</span>
                   </label>
@@ -176,7 +176,7 @@ export default function FilterSidebar({
                         value={tech}
                         checked={filters.technology === tech}
                         onChange={(e) => onFilterChange('technology', e.target.value)}
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                        className="h-4 w-4 flex-shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
                       <span className="ml-2 text-xs text-gray-700">{tech}</span>
                     </label>
@@ -197,7 +197,7 @@ export default function FilterSidebar({
                       value={duration}
                       checked={filters.duration === duration}
                       onChange={(e) => onFilterChange('duration', e.target.value)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 flex-shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-xs text-gray-700">{duration}</span>
                   </label>
@@ -217,7 +217,7 @@ export default function FilterSidebar({
                       value={range}
                       checked={filters.priceRange === range}
                       onChange={(e) => onFilterChange('priceRange', e.target.value)}
-                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                      className="h-4 w-4 flex-shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
                     <span className="ml-2 text-xs text-gray-700">{range}</span>
                   </label>
