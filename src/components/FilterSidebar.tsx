@@ -95,13 +95,13 @@ export default function FilterSidebar({
       {/* Sidebar */}
       <div className={`fixed lg:relative inset-y-0 left-0 z-50 w-80 bg-white shadow-xl transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 transition-transform duration-300 ease-in-out`}>
+      } lg:translate-x-0 transition-transform duration-300 ease-in-out lg:w-64`}>
         <div className="h-full flex flex-col">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex items-center space-x-2">
               <Filter className="h-5 w-5 text-gray-600" />
-              <h2 className="text-lg font-semibold text-gray-900">Filters</h2>
+              <h2 className="text-base font-semibold text-gray-900">Filters</h2>
             </div>
             <button
               onClick={onClose}
@@ -111,11 +111,21 @@ export default function FilterSidebar({
             </button>
           </div>
 
+          {/* Clear filters button - moved to top */}
+          <div className="p-4 border-b border-gray-200">
+            <button
+              onClick={onClearFilters}
+              className="w-full px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200"
+            >
+              Clear All Filters
+            </button>
+          </div>
+
           {/* Filter content */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Branch Filter */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Branch</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-2">Branch</h3>
               <div className="space-y-2">
                 {branches.map(branch => (
                   <label key={branch} className="flex items-center">
@@ -127,7 +137,7 @@ export default function FilterSidebar({
                       onChange={(e) => onFilterChange('branch', e.target.value)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
-                    <span className="ml-2 text-sm text-gray-700">{branch}</span>
+                    <span className="ml-2 text-xs text-gray-700">{branch}</span>
                   </label>
                 ))}
               </div>
@@ -135,7 +145,7 @@ export default function FilterSidebar({
 
             {/* Program Filter */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Program</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-2">Program</h3>
               <div className="space-y-2">
                 {programs.map(program => (
                   <label key={program} className="flex items-center">
@@ -147,7 +157,7 @@ export default function FilterSidebar({
                       onChange={(e) => handleProgramChange(e.target.value)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
-                    <span className="ml-2 text-sm text-gray-700">{program}</span>
+                    <span className="ml-2 text-xs text-gray-700">{program}</span>
                   </label>
                 ))}
               </div>
@@ -156,7 +166,7 @@ export default function FilterSidebar({
             {/* Technology Filter - Only show when a specific program is selected */}
             {filters.program !== 'All' && (
               <div>
-                <h3 className="text-sm font-medium text-gray-900 mb-3">Technology</h3>
+                <h3 className="text-sm font-medium text-gray-900 mb-2">Technology</h3>
                 <div className="space-y-2">
                   {getCurrentTechnologies().map(tech => (
                     <label key={tech} className="flex items-center">
@@ -168,7 +178,7 @@ export default function FilterSidebar({
                         onChange={(e) => onFilterChange('technology', e.target.value)}
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                       />
-                      <span className="ml-2 text-sm text-gray-700">{tech}</span>
+                      <span className="ml-2 text-xs text-gray-700">{tech}</span>
                     </label>
                   ))}
                 </div>
@@ -177,7 +187,7 @@ export default function FilterSidebar({
 
             {/* Duration Filter */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Duration</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-2">Duration</h3>
               <div className="space-y-2">
                 {durations.map(duration => (
                   <label key={duration} className="flex items-center">
@@ -189,7 +199,7 @@ export default function FilterSidebar({
                       onChange={(e) => onFilterChange('duration', e.target.value)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
-                    <span className="ml-2 text-sm text-gray-700">{duration}</span>
+                    <span className="ml-2 text-xs text-gray-700">{duration}</span>
                   </label>
                 ))}
               </div>
@@ -197,7 +207,7 @@ export default function FilterSidebar({
 
             {/* Price Range Filter */}
             <div>
-              <h3 className="text-sm font-medium text-gray-900 mb-3">Price Range</h3>
+              <h3 className="text-sm font-medium text-gray-900 mb-2">Price Range</h3>
               <div className="space-y-2">
                 {priceRanges.map(range => (
                   <label key={range} className="flex items-center">
@@ -209,21 +219,11 @@ export default function FilterSidebar({
                       onChange={(e) => onFilterChange('priceRange', e.target.value)}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                     />
-                    <span className="ml-2 text-sm text-gray-700">{range}</span>
+                    <span className="ml-2 text-xs text-gray-700">{range}</span>
                   </label>
                 ))}
               </div>
             </div>
-          </div>
-
-          {/* Clear filters button */}
-          <div className="p-6 border-t border-gray-200">
-            <button
-              onClick={onClearFilters}
-              className="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors duration-200"
-            >
-              Clear All Filters
-            </button>
           </div>
         </div>
       </div>
