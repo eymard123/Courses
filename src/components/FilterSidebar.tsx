@@ -34,7 +34,7 @@ export default function FilterSidebar({
       'Information Technology',
       'Network System & Security Administrator',
       'Automotive Technology',
-      'Industrial Electrical Technology';
+      'Industrial Electrical Technology',
       'Industrial Automation & Manufacturing Technology',
       'Semiconductor & Manufacturing Technology',
       'Advanced Industrial Training Program'      
