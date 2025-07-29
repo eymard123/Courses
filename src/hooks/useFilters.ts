@@ -24,7 +24,8 @@ export default function useFilters(courses: Course[], searchTerm: string) {
       const matchesSearch = searchTerm === '' || 
         course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         course.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        course.technology.toLowerCase().includes(searchTerm.toLowerCase())
+        course.technology.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (course.tags && course.tags.toLowerCase().includes(searchTerm.toLowerCase()))
 
       // Branch filter
       const matchesBranch = filters.branch === 'All' || course.branch === filters.branch

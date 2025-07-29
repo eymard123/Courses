@@ -18,4 +18,5 @@ export type Course = {
   created_at?: string
   updated_at?: string
   link?: string
+  tags?: string
 }
