@@ -95,8 +95,8 @@ export default function FilterSidebar({
       {/* Sidebar */}
       <div className={`fixed lg:relative inset-y-0 left-0 z-50 w-80 bg-white shadow-xl transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
-      } lg:translate-x-0 transition-transform duration-300 ease-in-out lg:w-64`}>
-        <div className="h-full flex flex-col">
+      } lg:translate-x-0 transition-transform duration-300 ease-in-out lg:w-64 lg:h-fit lg:max-h-screen lg:sticky lg:top-8`}>
+        <div className="h-full lg:h-auto flex flex-col lg:rounded-lg lg:border lg:border-gray-200">
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200">
             <div className="flex items-center space-x-2">
@@ -122,7 +122,7 @@ export default function FilterSidebar({
           </div>
 
           {/* Filter content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 lg:flex-none overflow-y-auto p-4 space-y-4 lg:max-h-96">
             {/* Branch Filter */}
             <div>
               <h3 className="text-sm font-medium text-gray-900 mb-2">Branch</h3>
