@@ -30,11 +30,11 @@ export default function CourseCard({ course }: CourseCardProps) {
 
   const getBranchColor = (branch: string) => {
     switch (branch.toLowerCase()) {
-      case 'manila':
+      case 'Pasig':
         return 'bg-purple-100 text-purple-800'
-      case 'cebu':
+      case 'Pasay':
         return 'bg-teal-100 text-teal-800'
-      case 'online':
+      case 'Jalajala':
         return 'bg-indigo-100 text-indigo-800'
       default:
         return 'bg-gray-100 text-gray-800'
@@ -45,9 +45,9 @@ export default function CourseCard({ course }: CourseCardProps) {
     switch (program.toLowerCase()) {
       case '2-year program':
         return 'bg-purple-100 text-purple-800'
-      case 'senior high':
+      case 'Senior High':
         return 'bg-orange-100 text-orange-800'
-      case 'short courses':
+      case 'Short Courses':
         return 'bg-cyan-100 text-cyan-800'
       default:
         return 'bg-gray-100 text-gray-800'
