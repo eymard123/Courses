@@ -45,9 +45,9 @@ export default function CourseCard({ course }: CourseCardProps) {
     switch (program.toLowerCase()) {
       case '2-year program':
         return 'bg-purple-100 text-purple-800'
-      case 'Senior High':
+      case 'senior high':
         return 'bg-orange-100 text-orange-800'
-      case 'Short Courses':
+      case 'short courses':
         return 'bg-cyan-100 text-cyan-800'
       default:
         return 'bg-gray-100 text-gray-800'
